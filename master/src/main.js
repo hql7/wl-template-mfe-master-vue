@@ -10,10 +10,8 @@ import './core/install'
  * @description qiankun registerMicroApps方法 render用到，如果使用container装载子应用，无需此render函数
  * @deprecated 本示例只针对 qiankun2.0 因此只留下注释后的代码在此提醒各位读者如何兼容qiankun1.0
  */
-/* import render from './render';
-render({ loading: true }) */
-import { vueRender } from './core/render'
-vueRender({}, true)
+import vueRender from './core/render'
+vueRender()
 
 /**
  * @name 验证登陆身份并启动微应用

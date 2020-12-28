@@ -17,7 +17,7 @@ import { getAppConfigsApi } from "@/api/app-configs"
 /**
  * @name 导入消息组件
  */
-import { wlMessage } from '@/plugins/element';
+import { Message } from "element-ui";
 /**
  * @name 导入qiankun注册微应用方法
  */
@@ -34,7 +34,7 @@ const getAppConfigs = () => {
   getAppConfigsApi().then(({ data }) => {
     // 验证请求错误
     if (data.code !== 200) {
-      wlMessage({
+      Message({
         type: 'error',
         message: "请求错误"
       })
@@ -43,7 +43,7 @@ const getAppConfigs = () => {
     // 验证数据有效性
     let _res = data.data || [];
     if (_res.length === 0) {
-      wlMessage({
+      Message({
         type: 'error',
         message: "没有可以注册的子应用数据"
       })

@@ -1,6 +1,9 @@
 
 const { port } = require("./package");
 
+// gzip压缩
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
+
 module.exports = {
   // publicPath: './',
   devServer: {
@@ -39,6 +42,26 @@ module.exports = {
       sass: {
         prependData: `@import "./src/assets/css/variables/variables.scss";`
       }
+    }
+  },
+  configureWebpack: {
+    plugins: [
+      // gzip压缩
+      new CompressionWebpackPlugin({
+        filename: "[path].gz[query]", //目标资源名称
+        algorithm: "gzip",
+        test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i, //处理所有匹配此 {RegExp} 的资源
+        threshold: 10240,//只处理比这个值大的资源。按字节计算(楼主设置10K以上进行压缩)
+        minRatio: 0.8 //只有压缩率比这个值小的资源才会被处理
+      }),
+      // 分析包大小
+      // new BundleAnalyzerPlugin(),
+    ],
+    externals: {
+      'vue': 'Vue',
+      'vuex': 'Vuex',
+      'vue-router': 'VueRouter',
+      'element-ui': 'ELEMENT',
     }
   }
 };

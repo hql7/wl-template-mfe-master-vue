@@ -1,10 +1,10 @@
-import { wlMessage } from '@/plugins/element';
+import { Message } from "element-ui";
 
 /**
  * @name 退出登录
  */
 const logout = () => {
-  wlMessage('退出登录')
+  Message('退出登录')
 }
 
 export default [

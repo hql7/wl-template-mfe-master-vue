@@ -68,7 +68,7 @@ body {
     padding: 8px;
     width: 100%;
     height: calc(100% - 60px);
-    background: $main-base-color;
+    background: #f2f3f3;
     box-sizing: border-box;
     > .wl-scroll {
       width: 100%;
