@@ -12,6 +12,8 @@ const appStore = (initGlobalState) => {
    */
   const { onGlobalStateChange, setGlobalState } = initGlobalState({
     msg: '来自master初始化的消息',
+    loading: false,
+    isIndex: true,
   });
 
   /**
@@ -22,6 +24,8 @@ const appStore = (initGlobalState) => {
   onGlobalStateChange((value, prev) => { 
     console.log('[onGlobalStateChange - master]:', value, prev);
     store.dispatch('appstore/setMsg', value.msg)
+    store.dispatch("app/setLoadline", value.loading);
+
   });
 
   /**

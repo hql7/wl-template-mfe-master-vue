@@ -10,12 +10,10 @@
         <the-nav />
         <!-- 子应用渲染区 -->
         <div class="main-container-view">
+          <load-line></load-line>
           <el-scrollbar class="wl-scroll">
             <!-- qiankun2.0  container 模式-->
             <div id="subapp-viewport" class="app-view-box"></div>
-            <!-- qiankun1.0  render 模式-->
-            <div v-html="appContent" class="app-view-box"></div>
-            <div v-if="loading" class="subapp-loading"></div>
           </el-scrollbar>
         </div>
       </div>
@@ -28,22 +26,20 @@
 <script>
 import TheMenu from "@/components/TheMenu.vue";
 import TheNav from "@/components/TheNav.vue";
+import LoadLine from "@/components/LoadLine.vue";
 
 export default {
   name: "rootView",
   components: {
     TheMenu,
-    TheNav
-  },
-  props: {
-    loading: Boolean,
-    appContent: String
+    TheNav,
+    LoadLine,
   },
   computed: {
     hasToken() {
       return !!this.$store.getters.token;
-    }
-  }
+    },
+  },
 };
 </script>
 
