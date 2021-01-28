@@ -1,5 +1,4 @@
 import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from "qiankun";
-import store from "../store";
 
 /**
  * @name 导入render函数兼容qiakun1.0装载子应用方法，如果使用2.0container装载则不需要此方法,此处留着注释代码提供兼容qiankun1.0的示例
@@ -34,7 +33,6 @@ const appContainer = "#subapp-viewport";
  * @param components 主应要传递给子应用的组件类信息（只是一种方案）
  */
 let props = {
-  data: store.getters,
   emits,
   GLOBAL
 }
@@ -56,6 +54,7 @@ const qianKunStart = (list) => {
       entry: isDev ? i.devEntry : i.depEntry,
       container: appContainer,
       activeRule: i.routerBase,
+      useExternals: i.useExternals,
       props: { ...props, routes: i.data, routerBase: i.routerBase }
     })
     if (i.defaultRegister) defaultApp = i.routerBase;

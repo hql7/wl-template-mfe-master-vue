@@ -25,7 +25,7 @@ import qianKunStart from "./app-register"
 /**
  * @name 导入无需服务端获取的微应用
  */
-import noAuthApps from "./app-config"
+import { noAuthApps, nextAuthApps } from "./app-config"
 
 /**
  * @name 请求获取服务端子应用注册表
@@ -51,12 +51,13 @@ const getAppConfigs = () => {
     }
     // 处理菜单状态共享
     let _menu = [];
-    _res.forEach(i => {
+    let all_apps = [..._res, ...nextAuthApps];
+    all_apps.forEach(i => {
       if (DataType.isArray(i.data)) _menu.push(...i.data)
     })
     store.dispatch('menu/setMenu', _menu);
     // 启用qiankun微前端应用
-    qianKunStart(_res);
+    qianKunStart(all_apps);
   })
 }
 
